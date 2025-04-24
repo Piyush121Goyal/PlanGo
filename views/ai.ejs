@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ask Our Travel AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+
+    <header class="bg-[#38383B] text-white flex h-[65px] shadow-md">
+      <div class="items-center">
+        <a href="/" class="flex items-center">
+            <img src="images/Screenshot 2025-03-23 235050.png" alt="logo" class="text-xl w-[80px] h-[58px] pl-[30px] pt-[6px]" />
+            <h1 class="text-xl font-normal pl-[3px] pt-[0px]">PlanGo</h1>
+        </a>
+      </div>
+    </header>
+
+    <main class="bg-[url('./images/pexels.jpg')] bg-cover bg-center  h-[710px] w-full flex justify-center items-center ">
+      <div class="bg-[#38383B] rounded-3xl h-[600px] w-[800px] space-y-10 p-2 shadow-lg">
+        <h2 class=" pt-4 text-3xl font-semibold text-center text-white">Ask Our Travel AI</h2>
+
+        <div class="h-[400px] overflow-y-auto  border border-gray-200 rounded-lg p-4 bg-gray-50" id="chatbox">
+          <div class="text-lg "><h class="text-black font-semibold">AI:</h> <h class="text-green-700">Hey there! I'm your AI travel buddy here at PlanGo. Ready to plan your next adventure? Just let me know where you're headed, and I'll help you put together the perfect trip — your way! Feel free to ask me anything!</h></div>
+        </div>
+
+        <form id="userchat" class="flex gap-3">
+          <input
+            type="text"
+            id="userinput"
+            placeholder="Ask anything about your travel..."
+            class="flex-1 border border-gray-300 rounded-lg px-4 py-2 "
+          />
+          <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">Ask</button>
+            
+        </form>
+      </div>
+    </main>
+
+    <footer class="bg-[#242425] text-white h-[56px] flex items-center w-full">
+        <div class=" pl-[100px] flex items-center h-[50px] ">
+            Copyright © PlanGo     
+        </div>
+    </footer>
+
+    <script>
+      const chatBox = document.getElementById('chatbox');
+      const form = document.getElementById('userchat');
+      const input = document.getElementById('userinput');
+
+      form.addEventListener('submit', function(e){  
+        e.preventDefault();
+        const userMessage = input.value;
+        if (userMessage.trim() === '') 
+        return;
+       
+        const userHtml = `<div class="text-lg  mb-2"><h class="text-black font-semibold">You: </h><h class="text-green-700">${userMessage}</h></div>`;
+        chatBox.innerHTML += userHtml;
+        input.value = '';
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        // TODO: Connect this to your AI backend route
+        const aiResponse = `<div class="text-lg "><h class="text-black font-semibold">AI: </h><h class="text-green-700>hi</h></div>`;
+        chatBox.innerHTML += aiResponse;
+        chatBox.scrollTop = chatBox.scrollHeight;
+      });
+    </script>
+  </body>
+</html>
